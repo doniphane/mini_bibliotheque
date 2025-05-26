@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil - Mini Bibliothèque{% endblock %}
+{% block body %}
+<div class="row">
+<div class="col-md-12">
+<h1>Bienvenue dans votre Mini Bibliothèque</h1>
+<p class="lead">Gérez facilement vos auteurs et vos livres.</p>
+<div class="row mt-4">
+<div class="col-md-6">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Gestion des Auteurs</h5>
+<p class="card-text">Ajoutez, consultez et supprimez des
+auteurs.</p>
+
+<a href="{{ path('app_auteur_index') }}" class="btn btn-
+primary">Voir les auteurs</a>
+
+<a href="{{ path('app_auteur_new') }}" class="btn btn-
+success">Ajouter un auteur</a>
+
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Gestion des Livres</h5>
+<p class="card-text">Ajoutez, modifiez et supprimez des
+livres.</p>
+
+<a href="{{ path('app_livre_index') }}" class="btn btn-
+primary">Voir les livres</a>
+
+<a href="{{ path('app_livre_new') }}" class="btn btn-
+success">Ajouter un livre</a>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

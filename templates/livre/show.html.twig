@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Détails du livre{% endblock %}
+{% block body %}
+<h1>Détails du livre</h1>
+<div class="card">
+<div class="card-body">
+
+<h5 class="card-title">{{ livre.titre }}</h5>
+<p class="card-text">
+<strong>ID :</strong> {{ livre.id }}<br>
+<strong>Titre :</strong> {{ livre.titre }}<br>
+<strong>Année :</strong> {{ livre.annee }}<br>
+<strong>Auteur :</strong>
+{% if livre.auteur %}
+<a href="{{ path('app_auteur_show', {'id': livre.auteur.id}) }}">
+{{ livre.auteur.prenom }} {{ livre.auteur.nom }}
+</a>
+{% else %}
+<span class="text-muted">Aucun auteur associé</span>
+{% endif %}
+</p>
+</div>
+</div>
+<div class="mt-3">
+<a href="{{ path('app_livre_index') }}" class="btn btn-secondary">Retour à la liste</a>
+<a href="{{ path('app_livre_edit', {'id': livre.id}) }}" class="btn btn-warning">Modifier</a>
+<form method="post" action="{{ path('app_livre_delete', {'id': livre.id}) }}" style="display:
+inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?')">
+<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ livre.id) }}">
+<button class="btn btn-danger">Supprimer</button>
+</form>
+</div>
+{% endblock %}

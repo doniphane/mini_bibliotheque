@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Auteurs{% endblock %}
+{% block body %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h1>Liste des Auteurs</h1>
+<a href="{{ path('app_auteur_new') }}" class="btn btn-success">Ajouter un
+auteur</a>
+</div>
+{% if auteurs is empty %}
+<div class="alert alert-info">
+Aucun auteur trouvé. <a href="{{ path('app_auteur_new') }}">Ajoutez le
+premier auteur</a>.
+</div>
+{% else %}
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>ID</th>
+<th>Nom</th>
+<th>Prénom</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for auteur in auteurs %}
+<tr>
+<td>{{ auteur.id }}</td>
+<td>{{ auteur.nom }}</td>
+<td>{{ auteur.prenom }}</td>
+<td>
+<a href="{{ path('app_auteur_show', {'id':
+auteur.id}) }}" class="btn btn-info btn-sm">Voir</a>
+<form method="post"
+action="{{ path('app_auteur_delete', {'id': auteur.id}) }}" style="display:
+inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet
+auteur ?')">
+<input type="hidden" name="_token"
+value="{{ csrf_token('delete' ~ auteur.id) }}">
+
+<button class="btn btn-danger btn-
+sm">Supprimer</button>
+
+</form>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}
